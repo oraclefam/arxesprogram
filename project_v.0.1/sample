@@ -1,9 +1,11 @@
 PROGRAM hey
 FUNCTION int add(int a[10], char b[2], int c)
 VARS a,z,y;
-CHAR var1,var2,var3;
-INTEGER f,vt,g;
-f=10 - 5;
-vt = 8;
+CHAR f,vt,g;
+INTEGER var1,var2,var3;
+var1=2;
+var2 = var1;
+g = 5 + 2
+
 
 

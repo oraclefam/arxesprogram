@@ -24,6 +24,7 @@
  // void AssignmentError(char*);
   char* extractIdentifier(char[]);
   void UpdateValue(char*,int);
+  void UpdateValue2(char*,char*);
 
   //For Array Identifiers
   int noOfArrayIdentifiers=0;
@@ -260,56 +261,52 @@ assignment_command : identifier ASSIGN expression SEMICOLON {
   								   UpdateValue($1,$3);
 								}else{
 									printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists, identifier '%s' does not exist ",yylineno,$1);
-    exit(0);
+    									exit(0);
 								     }
 	    						     }
+		   | identifier ASSIGN identifier SEMICOLON { 
+							     if(!isDuplicate($1) || !isDuplicate($3))
+								{
+								  printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists",yylineno);
+    									exit(0);
+								}else{ UpdateValue2($1,$3); }
+							    }
+
+								
+							    
 		   | assignment_command identifier ASSIGN expression SEMICOLON {
 								if(isDuplicate($2)) 
 								{ 
   								   UpdateValue($2,$4);
 								}else{
 									printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists, identifier '%s' does not exist ",yylineno,$2);
-    exit(0);
+    									exit(0);
 								     }
-	    						     }
+	    						     			}
+		    						     					     
+		   | assignment_command identifier ASSIGN identifier SEMICOLON { 
+							     if(!isDuplicate($2) || !isDuplicate($4))
+								{
+								  printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists",yylineno);
+    									exit(0);
+								}else{ UpdateValue2($2,$4); }
+							    }
+													     
 		   | error '>' {;}
 		   ;
 
 
 expression : integer_value {;}
-
-	   |expression ADD integer_value  {$$ = $1 + $3;}
-	   |expression SUB integer_value  {$$ = $1 - $3;}
+	   |expression ADD expression  {$$ = $1 + $3;}
+	   |expression SUB expression  {$$ = $1 - $3;}
+	   |expression POW expression  {$$ = $1 ^ $3;}
+	   |expression MUL expression  {$$ = $1 * $3;}
+	   |expression DIV expression  {$$ = $1 / $3;}
+	   |left_parenthesis expression right_parenthesis  {$$ = $2;}
 	   ;
 
 
-/*
-assignment_command : EXPRESSION  SEMICOLON  { ; } 
-		   | assignment_command EXPRESSION  SEMICOLON  { ; } 
-		   | error '>'   {}
-		   ;                      
 
-
-EXPRESSION  : DATA_TYPE identifier ASSIGN NUMBER  {
-                                  if(!isDuplicate($2,retrieveDataType())){
-                                    storeIdentifier($2,retrieveDataType());
-                                    storeDataType($1);
-                                  }else{
-                                    DuplicateIdentifierError($2);
-                                  } 
-                                }     
-	     
-	      | error '>'   {}
-	      ;
-
-NUMBER    : integer_value  {if(!isValidAssignment("int")){ AssignmentError(itoa($1));}}
-	 | character_value {if(!isValidAssignment("char")){ AssignmentError(ctoa($1));}   }    				    
-     	 | string_value          {if(!isValidAssignment("char*")){ AssignmentError($1);} }
-     	 ;
-
-
-
-*/
 
 
 

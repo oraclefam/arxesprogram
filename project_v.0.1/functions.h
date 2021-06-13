@@ -134,3 +134,24 @@ int i;
    				 }
 
 						}
+
+
+void UpdateValue2(char* identifier_name,char* identifier_name2){
+int i;
+int k;
+int number;
+    for(i=0;i<noOfIdentifiers;i++){
+        for(k=0;k<noOfIdentifiers;k++){
+		if(strcmp(identifier_name2,identifiers[k].name) == 0 && strcmp(identifier_name,identifiers[i].name) == 0 ){
+				number = identifiers[k].value;
+				identifiers[i].value = number;
+				printf("%s = %d \n ",identifier_name,number);
+		
+			}
+		}
+	}
+}
+
+
+
+

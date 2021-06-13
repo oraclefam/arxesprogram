@@ -89,6 +89,7 @@
  // void AssignmentError(char*);
   char* extractIdentifier(char[]);
   void UpdateValue(char*,int);
+  void UpdateValue2(char*,char*);
 
   //For Array Identifiers
   int noOfArrayIdentifiers=0;
@@ -96,7 +97,7 @@
 
 
 
-#line 100 "y.tab.c" /* yacc.c:339  */
+#line 101 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -194,14 +195,14 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 39 "project.y" /* yacc.c:355  */
+#line 40 "project.y" /* yacc.c:355  */
 
   int intVal;
   char* dataType;
   char* strVal;
   char charVal;
 
-#line 205 "y.tab.c" /* yacc.c:355  */
+#line 206 "y.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -218,7 +219,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 222 "y.tab.c" /* yacc.c:358  */
+#line 223 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -437,16 +438,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  6
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   78
+#define YYLAST   129
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  31
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  12
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  38
+#define YYNRULES  44
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  85
+#define YYNSTATES  98
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -495,10 +496,11 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    88,    88,    89,    90,    93,   100,   109,   118,   129,
-     136,   145,   149,   150,   151,   152,   157,   166,   177,   184,
-     193,   198,   207,   218,   225,   234,   241,   242,   245,   246,
-     247,   248,   252,   257,   266,   275,   279,   281,   282
+       0,    89,    89,    90,    91,    94,   101,   110,   119,   130,
+     137,   146,   150,   151,   152,   153,   158,   167,   178,   185,
+     194,   199,   208,   219,   226,   235,   242,   243,   246,   247,
+     248,   249,   253,   258,   267,   277,   287,   295,   299,   300,
+     301,   302,   303,   304,   305
 };
 #endif
 
@@ -531,10 +533,10 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -28
+#define YYPACT_NINF -69
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-28)))
+  (!!((Yystate) == (-69)))
 
 #define YYTABLE_NINF -1
 
@@ -545,15 +547,16 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-       0,   -27,   -22,    52,   -28,    -4,   -28,   -15,    30,    28,
-      31,    43,    29,     5,    47,    32,   -18,     2,     5,   -28,
-     -28,   -28,    36,    37,     6,   -12,    12,     7,    36,   -28,
-     -28,    21,    -1,     1,     3,   -28,   -28,    12,    11,   -28,
-      34,   -28,   -28,    25,    38,   -28,   -28,    27,    39,    -1,
-       1,    51,   -28,    40,     3,   -28,   -28,   -28,    17,   -28,
-     -28,    19,   -28,   -28,    33,    35,    48,    53,   -28,   -28,
-     -28,   -28,   -28,   -28,   -28,   -28,     4,    48,    54,    55,
-     -28,     9,   -28,   -28,   -28
+       0,    -5,    15,    59,   -69,    52,   -69,    57,    61,    55,
+      60,    74,    62,     5,    76,    58,   -19,    31,     5,   -69,
+     -69,   -69,    66,    67,    32,    21,    41,    36,    66,   -69,
+     -69,    50,    -1,     1,     3,   -69,   -69,    41,    40,   -69,
+      64,   -69,   -69,    54,    68,   -69,   -69,    56,    69,    -1,
+       1,    83,   -69,    70,     3,   -69,   -69,   -69,    46,   -69,
+     -69,    49,   -69,   -69,    63,    65,    -8,    84,   -69,   -69,
+     -69,   -69,   -69,   -69,   -69,     2,   -69,    79,    29,    -6,
+      48,   -69,     2,     2,     2,     2,     2,   -69,    80,    34,
+     -69,    51,    51,    93,    93,   -69,   -69,   -69
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -567,23 +570,24 @@ static const yytype_uint8 yydefact[] =
       13,     0,     0,     0,     0,     9,    10,     0,     0,    26,
        0,    16,    17,     0,     0,    21,    22,     0,     0,     0,
        0,     0,     5,    32,     0,    14,    15,    20,     0,    28,
-      25,     0,    29,    35,     0,     0,     0,     0,     6,    18,
-      19,    23,    24,    30,    31,    36,     0,     0,     0,     0,
-      33,     0,    37,    38,    34
+      25,     0,    29,    37,     0,     0,     0,     0,     6,    18,
+      19,    23,    24,    30,    31,     0,    38,     0,     0,     0,
+       0,    34,     0,     0,     0,     0,     0,    33,     0,     0,
+      44,    39,    40,    42,    43,    41,    36,    35
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -28,   -28,   -28,    56,   -28,    16,    20,    49,    41,    22,
-     -28,    -6
+     -69,   -69,   -69,    85,   -69,    53,    71,    73,    72,    75,
+     -69,   -68
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
       -1,     3,     8,    17,    31,    43,    47,    26,    34,    52,
-      53,    76
+      53,    78
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -591,26 +595,36 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      40,     1,    44,     4,    48,     5,    15,    78,    79,    20,
-      21,     9,    78,    79,    22,    29,    30,    23,    28,     7,
-      80,    23,     2,    49,    50,    84,    41,    42,    45,    46,
-      51,    16,    32,    33,    35,    36,    38,    39,    55,    56,
-      58,    59,    61,    62,    69,    70,    71,    72,    58,    73,
-      61,    74,     6,    10,    13,    11,    14,    12,    18,    66,
-      25,    77,    19,    27,    57,    64,    75,    67,    60,    63,
-      65,    81,    82,    83,    24,     0,    68,    37,    54
+      40,     1,    44,    75,    48,    75,    15,    80,    20,    21,
+      76,    89,    76,    75,    91,    92,    93,    94,    95,    77,
+      76,    88,     2,    49,    50,     4,    41,    42,    45,    46,
+      51,    16,    82,    83,    84,    85,    86,    82,    83,    84,
+      85,    86,     5,    22,    28,    87,    23,    23,    29,    30,
+      97,    82,    83,    84,    85,    86,    84,    85,    86,     6,
+      90,    32,    33,    35,    36,    38,    39,    55,    56,    58,
+      59,    61,    62,    69,    70,     7,    71,    72,    58,    73,
+      61,    74,    11,     9,    10,    13,    12,    18,    19,    14,
+      25,    66,    79,    27,    57,    81,    96,    67,    60,    63,
+      86,    37,    64,    24,     0,     0,     0,     0,     0,    54,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,    65,     0,     0,     0,     0,     0,     0,     0,    68
 };
 
 static const yytype_int8 yycheck[] =
 {
-       1,     1,     1,    30,     1,    27,     1,     3,     4,    27,
-      28,    26,     3,     4,    12,    27,    28,    15,    12,    23,
-      16,    15,    22,    20,    21,    16,    27,    28,    27,    28,
-      27,    26,    20,    21,    27,    28,    15,    16,    27,    28,
-      15,    16,    15,    16,    27,    28,    27,    28,    15,    16,
-      15,    16,     0,    23,    11,    27,    27,    26,    11,     8,
-      24,     8,    30,    26,    30,    49,    18,    27,    30,    30,
-      50,    77,    18,    18,    18,    -1,    54,    28,    37
+       1,     1,     1,    11,     1,    11,     1,    75,    27,    28,
+      18,    79,    18,    11,    82,    83,    84,    85,    86,    27,
+      18,    27,    22,    20,    21,    30,    27,    28,    27,    28,
+      27,    26,     3,     4,     5,     6,     7,     3,     4,     5,
+       6,     7,    27,    12,    12,    16,    15,    15,    27,    28,
+      16,     3,     4,     5,     6,     7,     5,     6,     7,     0,
+      12,    20,    21,    27,    28,    15,    16,    27,    28,    15,
+      16,    15,    16,    27,    28,    23,    27,    28,    15,    16,
+      15,    16,    27,    26,    23,    11,    26,    11,    30,    27,
+      24,     8,     8,    26,    30,    16,    16,    27,    30,    30,
+       7,    28,    49,    18,    -1,    -1,    -1,    -1,    -1,    37,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    50,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    54
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -624,8 +638,9 @@ static const yytype_uint8 yystos[] =
        1,    27,    28,    36,     1,    27,    28,    37,     1,    20,
       21,    27,    40,    41,    39,    27,    28,    30,    15,    16,
       30,    15,    16,    30,    36,    37,     8,    27,    40,    27,
-      28,    27,    28,    16,    16,    18,    42,     8,     3,     4,
-      16,    42,    18,    18,    16
+      28,    27,    28,    16,    16,    11,    18,    27,    42,     8,
+      42,    16,     3,     4,     5,     6,     7,    16,    27,    42,
+      12,    42,    42,    42,    42,    42,    16,    16
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -634,7 +649,8 @@ static const yytype_uint8 yyr1[] =
        0,    31,    32,    32,    32,    33,    33,    34,    34,    34,
       34,    34,    35,    35,    35,    35,    36,    36,    36,    36,
       36,    37,    37,    37,    37,    37,    38,    38,    39,    39,
-      39,    39,    40,    41,    41,    41,    42,    42,    42
+      39,    39,    40,    41,    41,    41,    41,    41,    42,    42,
+      42,    42,    42,    42,    42
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -643,7 +659,8 @@ static const yytype_uint8 yyr2[] =
        0,     2,     2,     3,     2,     9,    10,     2,     2,     4,
        4,     2,     1,     1,     3,     3,     1,     1,     3,     3,
        2,     1,     1,     3,     3,     2,     3,     0,     3,     3,
-       4,     4,     1,     4,     5,     2,     1,     3,     3
+       4,     4,     1,     4,     4,     5,     5,     2,     1,     3,
+       3,     3,     3,     3,     3
 };
 
 
@@ -1576,47 +1593,47 @@ yyreduce:
     switch (yyn)
       {
           case 2:
-#line 88 "project.y" /* yacc.c:1646  */
+#line 89 "project.y" /* yacc.c:1646  */
     { clearBuffers(); }
-#line 1582 "y.tab.c" /* yacc.c:1646  */
+#line 1599 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 89 "project.y" /* yacc.c:1646  */
-    {;}
-#line 1588 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 4:
 #line 90 "project.y" /* yacc.c:1646  */
-    {/* ' > ' stops execution all together */}
-#line 1594 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 5:
-#line 94 "project.y" /* yacc.c:1646  */
-    { if(!isDuplicate((yyvsp[-6].strVal))){
-                                            storeIdentifier((yyvsp[-6].strVal),retrieveDataType());
-                                            storeDataType((yyvsp[-7].dataType));
-                                          }else{
-                                            DuplicateIdentifierError((yyvsp[-6].strVal));
-                                          } }
+    {;}
 #line 1605 "y.tab.c" /* yacc.c:1646  */
     break;
 
-  case 6:
-#line 101 "project.y" /* yacc.c:1646  */
+  case 4:
+#line 91 "project.y" /* yacc.c:1646  */
+    {/* ' > ' stops execution all together */}
+#line 1611 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 5:
+#line 95 "project.y" /* yacc.c:1646  */
     { if(!isDuplicate((yyvsp[-6].strVal))){
                                             storeIdentifier((yyvsp[-6].strVal),retrieveDataType());
                                             storeDataType((yyvsp[-7].dataType));
                                           }else{
                                             DuplicateIdentifierError((yyvsp[-6].strVal));
                                           } }
-#line 1616 "y.tab.c" /* yacc.c:1646  */
+#line 1622 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 6:
+#line 102 "project.y" /* yacc.c:1646  */
+    { if(!isDuplicate((yyvsp[-6].strVal))){
+                                            storeIdentifier((yyvsp[-6].strVal),retrieveDataType());
+                                            storeDataType((yyvsp[-7].dataType));
+                                          }else{
+                                            DuplicateIdentifierError((yyvsp[-6].strVal));
+                                          } }
+#line 1633 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 109 "project.y" /* yacc.c:1646  */
+#line 110 "project.y" /* yacc.c:1646  */
     {
                                   if(!isDuplicate((yyvsp[0].strVal))){
                                     storeIdentifier((yyvsp[0].strVal),retrieveDataType());
@@ -1625,11 +1642,11 @@ yyreduce:
                                     DuplicateIdentifierError((yyvsp[0].strVal));
                                   } 
                               		        }
-#line 1629 "y.tab.c" /* yacc.c:1646  */
+#line 1646 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 118 "project.y" /* yacc.c:1646  */
+#line 119 "project.y" /* yacc.c:1646  */
     {  
                                   strcpy(extractedIdentifier[noOfArrayIdentifiers],extractIdentifier((yyvsp[0].strVal)));
                                   if(!isDuplicate(extractedIdentifier[noOfArrayIdentifiers])){
@@ -1640,11 +1657,11 @@ yyreduce:
                                   } 
                                   noOfArrayIdentifiers++;
                                 	        }
-#line 1644 "y.tab.c" /* yacc.c:1646  */
+#line 1661 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 129 "project.y" /* yacc.c:1646  */
+#line 130 "project.y" /* yacc.c:1646  */
     {
                                   if(!isDuplicate((yyvsp[0].strVal))){
                                     storeIdentifier((yyvsp[0].strVal),retrieveDataType());
@@ -1652,11 +1669,11 @@ yyreduce:
                                     DuplicateIdentifierError((yyvsp[0].strVal));
                                   }
                                 }
-#line 1656 "y.tab.c" /* yacc.c:1646  */
+#line 1673 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 136 "project.y" /* yacc.c:1646  */
+#line 137 "project.y" /* yacc.c:1646  */
     {
                                     strcpy(extractedIdentifier[noOfArrayIdentifiers],extractIdentifier((yyvsp[0].strVal)));
                                     if(!isDuplicate(extractedIdentifier[noOfArrayIdentifiers])){
@@ -1666,17 +1683,17 @@ yyreduce:
                                     } 
                                     noOfArrayIdentifiers++;
                                   }
-#line 1670 "y.tab.c" /* yacc.c:1646  */
+#line 1687 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 145 "project.y" /* yacc.c:1646  */
+#line 146 "project.y" /* yacc.c:1646  */
     {/* no need to call yyerror cuz of line 1570 of y.tab.c*/}
-#line 1676 "y.tab.c" /* yacc.c:1646  */
+#line 1693 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 157 "project.y" /* yacc.c:1646  */
+#line 158 "project.y" /* yacc.c:1646  */
     { 
                                   if(!isDuplicate((yyvsp[0].strVal))){
                                     storeIdentifier((yyvsp[0].strVal),"int");
@@ -1685,11 +1702,11 @@ yyreduce:
                                     DuplicateIdentifierError((yyvsp[0].strVal));
                                   } 
                               		        }
-#line 1689 "y.tab.c" /* yacc.c:1646  */
+#line 1706 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 166 "project.y" /* yacc.c:1646  */
+#line 167 "project.y" /* yacc.c:1646  */
     {  
                                   strcpy(extractedIdentifier[noOfArrayIdentifiers],extractIdentifier((yyvsp[0].strVal)));
                                   if(!isDuplicate(extractedIdentifier[noOfArrayIdentifiers])){
@@ -1700,11 +1717,11 @@ yyreduce:
                                   } 
                                   noOfArrayIdentifiers++;
                                 	        }
-#line 1704 "y.tab.c" /* yacc.c:1646  */
+#line 1721 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 177 "project.y" /* yacc.c:1646  */
+#line 178 "project.y" /* yacc.c:1646  */
     {
                                   if(!isDuplicate((yyvsp[0].strVal))){
                                     storeIdentifier((yyvsp[0].strVal),"int");
@@ -1712,11 +1729,11 @@ yyreduce:
                                     DuplicateIdentifierError((yyvsp[0].strVal));
                                   }
                                 }
-#line 1716 "y.tab.c" /* yacc.c:1646  */
+#line 1733 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 184 "project.y" /* yacc.c:1646  */
+#line 185 "project.y" /* yacc.c:1646  */
     {
                                     strcpy(extractedIdentifier[noOfArrayIdentifiers],extractIdentifier((yyvsp[0].strVal)));
                                     if(!isDuplicate(extractedIdentifier[noOfArrayIdentifiers])){
@@ -1726,17 +1743,17 @@ yyreduce:
                                     } 
                                     noOfArrayIdentifiers++;
                                   }
-#line 1730 "y.tab.c" /* yacc.c:1646  */
+#line 1747 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 193 "project.y" /* yacc.c:1646  */
+#line 194 "project.y" /* yacc.c:1646  */
     {;}
-#line 1736 "y.tab.c" /* yacc.c:1646  */
+#line 1753 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 198 "project.y" /* yacc.c:1646  */
+#line 199 "project.y" /* yacc.c:1646  */
     { 
                                   if(!isDuplicate((yyvsp[0].strVal))){
                                     storeIdentifier((yyvsp[0].strVal),"char");
@@ -1745,11 +1762,11 @@ yyreduce:
                                     DuplicateIdentifierError((yyvsp[0].strVal));
                                   } 
                               		        }
-#line 1749 "y.tab.c" /* yacc.c:1646  */
+#line 1766 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 207 "project.y" /* yacc.c:1646  */
+#line 208 "project.y" /* yacc.c:1646  */
     {  
                                   strcpy(extractedIdentifier[noOfArrayIdentifiers],extractIdentifier((yyvsp[0].strVal)));
                                   if(!isDuplicate(extractedIdentifier[noOfArrayIdentifiers])){
@@ -1760,11 +1777,11 @@ yyreduce:
                                   } 
                                   noOfArrayIdentifiers++;
                                 	        }
-#line 1764 "y.tab.c" /* yacc.c:1646  */
+#line 1781 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 218 "project.y" /* yacc.c:1646  */
+#line 219 "project.y" /* yacc.c:1646  */
     {
                                   if(!isDuplicate((yyvsp[0].strVal))){
                                     storeIdentifier((yyvsp[0].strVal),"char");
@@ -1772,11 +1789,11 @@ yyreduce:
                                     DuplicateIdentifierError((yyvsp[0].strVal));
                                   }
                                 }
-#line 1776 "y.tab.c" /* yacc.c:1646  */
+#line 1793 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 225 "project.y" /* yacc.c:1646  */
+#line 226 "project.y" /* yacc.c:1646  */
     {
                                     strcpy(extractedIdentifier[noOfArrayIdentifiers],extractIdentifier((yyvsp[0].strVal)));
                                     if(!isDuplicate(extractedIdentifier[noOfArrayIdentifiers])){
@@ -1786,111 +1803,159 @@ yyreduce:
                                     } 
                                     noOfArrayIdentifiers++;
                                   }
-#line 1790 "y.tab.c" /* yacc.c:1646  */
+#line 1807 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 234 "project.y" /* yacc.c:1646  */
+#line 235 "project.y" /* yacc.c:1646  */
     {;}
-#line 1796 "y.tab.c" /* yacc.c:1646  */
+#line 1813 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 241 "project.y" /* yacc.c:1646  */
+#line 242 "project.y" /* yacc.c:1646  */
     {;}
-#line 1802 "y.tab.c" /* yacc.c:1646  */
+#line 1819 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 242 "project.y" /* yacc.c:1646  */
+#line 243 "project.y" /* yacc.c:1646  */
     {;}
-#line 1808 "y.tab.c" /* yacc.c:1646  */
+#line 1825 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 245 "project.y" /* yacc.c:1646  */
+#line 246 "project.y" /* yacc.c:1646  */
     {;}
-#line 1814 "y.tab.c" /* yacc.c:1646  */
+#line 1831 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 246 "project.y" /* yacc.c:1646  */
+#line 247 "project.y" /* yacc.c:1646  */
     {;}
-#line 1820 "y.tab.c" /* yacc.c:1646  */
+#line 1837 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 247 "project.y" /* yacc.c:1646  */
+#line 248 "project.y" /* yacc.c:1646  */
     {;}
-#line 1826 "y.tab.c" /* yacc.c:1646  */
+#line 1843 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 248 "project.y" /* yacc.c:1646  */
+#line 249 "project.y" /* yacc.c:1646  */
     {;}
-#line 1832 "y.tab.c" /* yacc.c:1646  */
+#line 1849 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 252 "project.y" /* yacc.c:1646  */
+#line 253 "project.y" /* yacc.c:1646  */
     {;}
-#line 1838 "y.tab.c" /* yacc.c:1646  */
+#line 1855 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 257 "project.y" /* yacc.c:1646  */
+#line 258 "project.y" /* yacc.c:1646  */
     {
 								if(isDuplicate((yyvsp[-3].strVal))) 
 								{ 
   								   UpdateValue((yyvsp[-3].strVal),(yyvsp[-1].intVal));
 								}else{
 									printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists, identifier '%s' does not exist ",yylineno,(yyvsp[-3].strVal));
-    exit(0);
+    									exit(0);
 								     }
 	    						     }
-#line 1852 "y.tab.c" /* yacc.c:1646  */
+#line 1869 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 266 "project.y" /* yacc.c:1646  */
+#line 267 "project.y" /* yacc.c:1646  */
+    { 
+							     if(!isDuplicate((yyvsp[-3].strVal)) || !isDuplicate((yyvsp[-1].strVal)))
+								{
+								  printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists",yylineno);
+    									exit(0);
+								}else{ UpdateValue2((yyvsp[-3].strVal),(yyvsp[-1].strVal)); }
+							    }
+#line 1881 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 35:
+#line 277 "project.y" /* yacc.c:1646  */
     {
 								if(isDuplicate((yyvsp[-3].strVal))) 
 								{ 
   								   UpdateValue((yyvsp[-3].strVal),(yyvsp[-1].intVal));
 								}else{
 									printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists, identifier '%s' does not exist ",yylineno,(yyvsp[-3].strVal));
-    exit(0);
+    									exit(0);
 								     }
-	    						     }
-#line 1866 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 35:
-#line 275 "project.y" /* yacc.c:1646  */
-    {;}
-#line 1872 "y.tab.c" /* yacc.c:1646  */
+	    						     			}
+#line 1895 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 279 "project.y" /* yacc.c:1646  */
-    {;}
-#line 1878 "y.tab.c" /* yacc.c:1646  */
+#line 287 "project.y" /* yacc.c:1646  */
+    { 
+							     if(!isDuplicate((yyvsp[-3].strVal)) || !isDuplicate((yyvsp[-1].strVal)))
+								{
+								  printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists",yylineno);
+    									exit(0);
+								}else{ UpdateValue2((yyvsp[-3].strVal),(yyvsp[-1].strVal)); }
+							    }
+#line 1907 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 281 "project.y" /* yacc.c:1646  */
-    {(yyval.intVal) = (yyvsp[-2].intVal) + (yyvsp[0].intVal);}
-#line 1884 "y.tab.c" /* yacc.c:1646  */
+#line 295 "project.y" /* yacc.c:1646  */
+    {;}
+#line 1913 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 282 "project.y" /* yacc.c:1646  */
+#line 299 "project.y" /* yacc.c:1646  */
+    {;}
+#line 1919 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 39:
+#line 300 "project.y" /* yacc.c:1646  */
+    {(yyval.intVal) = (yyvsp[-2].intVal) + (yyvsp[0].intVal);}
+#line 1925 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 40:
+#line 301 "project.y" /* yacc.c:1646  */
     {(yyval.intVal) = (yyvsp[-2].intVal) - (yyvsp[0].intVal);}
-#line 1890 "y.tab.c" /* yacc.c:1646  */
+#line 1931 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 41:
+#line 302 "project.y" /* yacc.c:1646  */
+    {(yyval.intVal) = (yyvsp[-2].intVal) ^ (yyvsp[0].intVal);}
+#line 1937 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 42:
+#line 303 "project.y" /* yacc.c:1646  */
+    {(yyval.intVal) = (yyvsp[-2].intVal) * (yyvsp[0].intVal);}
+#line 1943 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 43:
+#line 304 "project.y" /* yacc.c:1646  */
+    {(yyval.intVal) = (yyvsp[-2].intVal) / (yyvsp[0].intVal);}
+#line 1949 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 44:
+#line 305 "project.y" /* yacc.c:1646  */
+    {(yyval.intVal) = (yyvsp[-1].intVal);}
+#line 1955 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1894 "y.tab.c" /* yacc.c:1646  */
+#line 1959 "y.tab.c" /* yacc.c:1646  */
         default: break;
       }
     if (yychar_backup != yychar)
@@ -2130,7 +2195,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 316 "project.y" /* yacc.c:1906  */
+#line 313 "project.y" /* yacc.c:1906  */
 
 int main(){
 
