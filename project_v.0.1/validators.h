@@ -7,7 +7,7 @@
 extern int strcmp(const char*,const char*); 
 
 extern char Data_Type[50];
-// 'extern' means that 'Data_Type[50]' is actually declared in another file (langFunctions.h)
+// 'extern' means that 'Data_Type[50]' is actually declared in another file (Functions.h)
 
 
 /*
@@ -15,6 +15,7 @@ extern char Data_Type[50];
   if valid, return 1, 
   if invalid, return 0
 */
+/*
 int isValidAssignment(char* givenDatatype){
     int i=0;
 
@@ -23,6 +24,7 @@ int isValidAssignment(char* givenDatatype){
     }
     return 1;
 }
+*/
 
 /*
   This function converts INTEGER to ASCII

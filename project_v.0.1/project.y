@@ -15,15 +15,15 @@
   extern int yylineno;
 
   void storeDataType(char*);
-  //int isDuplicate(char*, char*);
   int isDuplicate(char*);
   void storeIdentifier(char*,char*);
   void DuplicateIdentifierError(char*);
   char* retrieveDataType();
   void clearBuffers();
-  int isValidAssignment(char*);
-  void AssignmentError(char*);
+ // int isValidAssignment(char*);
+ // void AssignmentError(char*);
   char* extractIdentifier(char[]);
+  void UpdateValue(char*,int);
 
   //For Array Identifiers
   int noOfArrayIdentifiers=0;
@@ -77,9 +77,9 @@
 %type <strVal> body_pre
 %type <strVal> body
 %type <strVal> variable_list
-
+%type <intVal> expression
 %type <strVal> assignment_command
-%type <strVal> expression
+
 %type <strVal> commands 
 
 
@@ -248,25 +248,41 @@ body : INTEGER integer_variable_list  SEMICOLON  {;}
      | body CHAR  character_variable_list  SEMICOLON  {;}
      ;
 
-/*
+
 commands : assignment_command {;}
 	 ;
 
 
 //only for INTEGERS
 assignment_command : identifier ASSIGN expression SEMICOLON {
-
-
-if(isDuplicate($1) && retrieveDataType()=="int")
-{ 
-  UpdateVal($1,$3);
-}
-							}
+								if(isDuplicate($1)) 
+								{ 
+  								   UpdateValue($1,$3);
+								}else{
+									printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists, identifier '%s' does not exist ",yylineno,$1);
+    exit(0);
+								     }
+	    						     }
+		   | assignment_command identifier ASSIGN expression SEMICOLON {
+								if(isDuplicate($2)) 
+								{ 
+  								   UpdateValue($2,$4);
+								}else{
+									printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists, identifier '%s' does not exist ",yylineno,$2);
+    exit(0);
+								     }
+	    						     }
+		   | error '>' {;}
 		   ;
 
-expression : integer_value  {if(!isValidAssignment("int")){ AssignmentError(itoa($1));}}
+
+expression : integer_value {;}
+
+	   |expression ADD integer_value  {$$ = $1 + $3;}
+	   |expression SUB integer_value  {$$ = $1 - $3;}
 	   ;
-*/
+
+
 /*
 assignment_command : EXPRESSION  SEMICOLON  { ; } 
 		   | assignment_command EXPRESSION  SEMICOLON  { ; } 

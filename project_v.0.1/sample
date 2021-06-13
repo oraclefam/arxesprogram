@@ -2,10 +2,8 @@ PROGRAM hey
 FUNCTION int add(int a[10], char b[2], int c)
 VARS a,z,y;
 CHAR var1,var2,var3;
-INTEGER xt,vt,g;
-FUNCTION int add(int zet[10], char beta[2], int cat)
-VARS x,z,y;
-CHAR var1,var2,var3;
-INTEGER f,h,g;
+INTEGER f,vt,g;
+f=10 - 5;
+vt = 8;
 
 
