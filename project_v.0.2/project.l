@@ -27,8 +27,21 @@ linefeed        \n
 "WHILE"        {yylval.dataType = strdup(yytext); return WHILE;}
 "ENDWHILE"     {yylval.dataType = strdup(yytext); return ENDWHILE;}
 "VARS"	       {yylval.dataType = strdup(yytext); return VARS;}
+"FOR"          {yylval.dataType = strdup(yytext); return FOR;}
+"TO"           {yylval.dataType = strdup(yytext); return TO;}
+"STEP"         {yylval.dataType = strdup(yytext); return STEP;}
+"ENDFOR"       {yylval.dataType = strdup(yytext); return ENDFOR;}
 "INTEGER"      {yylval.dataType = strdup(yytext); return INTEGER;}
 "CHAR"         {yylval.dataType = strdup(yytext); return CHAR;}
+"IF"         {yylval.dataType = strdup(yytext); return IF;}
+"THEN"         {yylval.dataType = strdup(yytext); return THEN;}
+"ELSEIF"         {yylval.dataType = strdup(yytext); return ELSEIF;}
+"ELSE"         {yylval.dataType = strdup(yytext); return ELSE;}
+"ENDIF"         {yylval.dataType = strdup(yytext); return ENDIF;}
+"SWITCH"         {yylval.dataType = strdup(yytext); return SWITCH;}
+"CASE"         {yylval.dataType = strdup(yytext); return CASE;}
+"DEFAULT"         {yylval.dataType = strdup(yytext); return DEFAULT;}
+"ENDSWITCH"         {yylval.dataType = strdup(yytext); return ENDSWITCH;}
  /*
 "INTEGER"   |
 "CHAR"      {yylval.dataType = strdup(yytext); return CHAR_OR_INTEGER;}
@@ -50,6 +63,11 @@ linefeed        \n
 "<"				{return SMALLER_THAN;}
 "=="				{return IS_EQUAL;}
 "!="				{return NOT_EQUAL;}
+"&&"				{return AND;}
+"||"				{return OR;}
+":="				{return EQ;}
+":"				{return AM;}
+
 
 
 

@@ -61,23 +61,30 @@ extern int yydebug;
     SMALLER_THAN = 271,
     IS_EQUAL = 272,
     NOT_EQUAL = 273,
-    COMMA = 274,
-    SEMICOLON = 275,
-    character_value = 276,
-    integer_value = 277,
-    string_value = 278,
-    INTEGER = 279,
-    CHAR = 280,
-    PROGRAM = 281,
-    FUNCTION = 282,
-    WHILE = 283,
-    ENDWHILE = 284,
-    VARS = 285,
-    STRING = 286,
-    DATA_TYPE = 287,
-    identifier = 288,
-    array_identifier = 289,
-    STRUCT = 290
+    AND = 274,
+    OR = 275,
+    EQ = 276,
+    COMMA = 277,
+    SEMICOLON = 278,
+    character_value = 279,
+    integer_value = 280,
+    string_value = 281,
+    INTEGER = 282,
+    CHAR = 283,
+    PROGRAM = 284,
+    FUNCTION = 285,
+    WHILE = 286,
+    ENDWHILE = 287,
+    FOR = 288,
+    TO = 289,
+    STEP = 290,
+    ENDFOR = 291,
+    VARS = 292,
+    STRING = 293,
+    DATA_TYPE = 294,
+    identifier = 295,
+    array_identifier = 296,
+    STRUCT = 297
   };
 #endif
 /* Tokens.  */
@@ -97,37 +104,44 @@ extern int yydebug;
 #define SMALLER_THAN 271
 #define IS_EQUAL 272
 #define NOT_EQUAL 273
-#define COMMA 274
-#define SEMICOLON 275
-#define character_value 276
-#define integer_value 277
-#define string_value 278
-#define INTEGER 279
-#define CHAR 280
-#define PROGRAM 281
-#define FUNCTION 282
-#define WHILE 283
-#define ENDWHILE 284
-#define VARS 285
-#define STRING 286
-#define DATA_TYPE 287
-#define identifier 288
-#define array_identifier 289
-#define STRUCT 290
+#define AND 274
+#define OR 275
+#define EQ 276
+#define COMMA 277
+#define SEMICOLON 278
+#define character_value 279
+#define integer_value 280
+#define string_value 281
+#define INTEGER 282
+#define CHAR 283
+#define PROGRAM 284
+#define FUNCTION 285
+#define WHILE 286
+#define ENDWHILE 287
+#define FOR 288
+#define TO 289
+#define STEP 290
+#define ENDFOR 291
+#define VARS 292
+#define STRING 293
+#define DATA_TYPE 294
+#define identifier 295
+#define array_identifier 296
+#define STRUCT 297
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 41 "project.y" /* yacc.c:1909  */
+#line 43 "project.y" /* yacc.c:1909  */
 
   int intVal;
   char* dataType;
   char* strVal;
   char charVal;
 
-#line 131 "y.tab.h" /* yacc.c:1909  */
+#line 145 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

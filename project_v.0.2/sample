@@ -2,11 +2,15 @@ PROGRAM hey
 FUNCTION int add(int a[10], char b[2], int c)
 VARS a,z,y;
 CHAR f,vt,g;
-INTEGER var1,var2,var3;
+INTEGER var1,var2,i;
 var1= (10 + 2)*5 ;
 var2 =  8/(2*2) + var1 ;
-var3 = var2 + var1;
+i=3;
 WHILE 
-(var1 < var2) 
-var1=3;
+(i < 5) 
+var2=i;
+ i=var2+ 2;
 ENDWHILE
+FOR counter := 1 TO 100 STEP 2
+var1=1;
+ENDFOR

@@ -26,6 +26,8 @@
   void UpdateValue(char*,int);
   void UpdateValue2(char*,char*);
   int getValue(char*);
+  int WhileFun(char*,int,int);
+  int getPosition(int);
 
   //For Array Identifiers
   int noOfArrayIdentifiers=0;
@@ -57,7 +59,7 @@
 %start start
 %token newline print
 %token left_parenthesis right_parenthesis left_sbracket right_sbracket
-%token BIGGER_THAN SMALLER_THAN IS_EQUAL NOT_EQUAL
+%token BIGGER_THAN SMALLER_THAN IS_EQUAL NOT_EQUAL AND OR EQ
 %token COMMA SEMICOLON
 
 
@@ -70,7 +72,19 @@
 %token <strVal> FUNCTION
 %token <strVal> WHILE
 %token <strVal> ENDWHILE
-%token <strVal> VARS
+%token <strVal> FOR
+%token <strVal> TO
+%token <strVal> STEP
+%token <strVal> ENDFOR
+%token <strVal> IF
+%token <strVal> THEN
+%token <strVal> ELSEIF
+%token <strVal> ELSE
+%token <strVal> ENDIF
+%token <strVal> SWITCH
+%token <strVal> CASE
+%token <strVal> DEFAULT
+%token <strVal> ENDSWITCH
 %token <strVal> STRING
 %token <dataType> DATA_TYPE
  /* %token <dataType> CHAR_OR_INTEGER */
@@ -85,9 +99,13 @@
 %type <intVal> expression
 %type <strVal> assignment_command
 %type <strVal> while_command
+%type <strVal> for_command
+%type <strVal> if_command
 %type <strVal> commands
-%type <strVal> conditional_expression 
 %type <strVal> condition
+%type <strVal> conditional_command
+
+
 
 
 %% 
@@ -258,8 +276,14 @@ body : INTEGER integer_variable_list  SEMICOLON  {;}
 
 commands : assignment_command {;}
 	 | while_command      {;}
+	 | for_command        {;}
+	 | if_command         {;}
+	 | switch_command     {;}
 	 | commands assignment_command      {;}
-	 | commands while_command      {;}
+	 | commands while_command           {;}
+	 | commands for_command             {;}
+	 | commands if_command              {;}
+	 | commands switch_command              {;}
 	 ;
 
 
@@ -316,34 +340,35 @@ expression : integer_value {$$=$1;}
 				  }
 	   ;
 
-/*
-<loop_command> ::= WHILE <left_parenthesis><conditional-expression><right_parenthesis>  <commands> ENDWHILE | FOR identifier <equals_operator> integer TO integer STEP integer <commands> ENDFOR
-<conditional_expression> ::= <variable_c><relational_operator><variable_c> | <conditional_expression> <logical_operator><conditional_expression> 
-<relational_operator> ::= > | < | == | !=
-<logic_operator> ::= AND | OR
-<variable_c> :: = variable | integer 
-<equals_operator> ::= :=
 
-*/
 
-while_command : WHILE left_parenthesis conditional_expression right_parenthesis commands ENDWHILE {;}
+while_command : WHILE left_parenthesis conditional_command  right_parenthesis commands ENDWHILE {;}        	      
 	      ;
-conditional_expression:  integer_value {$$=$1;}
-		      | identifier {
-				    if(isDuplicate($1)){
-					$$=getValue($1);
-							}
-				   else {
-					 printf("\nERROR ON LINE %d : \nInvalid assignment! Expected identifier that alreay exists, identifier '%s' does not exist ",yylineno,$1);
-					 exit(0);
-					}	
-				  }
-		      | conditional_expression condition conditional_expression{;}
-		      ;
+for_command : FOR identifier EQ integer_value TO integer_value STEP integer_value commands ENDFOR {;}
+            ;
+
+
+if_command: IF left_parenthesis conditional_command  right_parenthesis THEN commands {;}
+	  | if_command ELSEIF commands{;}
+	  | if_command ELSE commands ENDIF {;}
+	  | IF left_parenthesis conditional_command  right_parenthesis THEN commands ENDIF{;}
+	 ;
+
+switch_command: SWITCH left_parenthesis expression right_parenthesis CASE left_parenthesis expression right_parenthesis AM commands {;}
+	      | switch_command CASE left_parenthesis expression right_parenthesis AM commands {;}
+	      | switch_command DEFAULT AM commands {;}
+	      | switch_commansd ENDSWITCH {;}
+              ;
+
+conditional_command : identifier condition integer_value{;} 
+		    ;
+
 condition : SMALLER_THAN {$$ = "<";}
     	  | BIGGER_THAN  {$$ = ">";}
    	  | IS_EQUAL     {$$ = "==";}
    	  | NOT_EQUAL    {$$ = "!=";}
+   	  | AND          {$$ = "&&";}
+   	  | OR           {$$ = "||";}
     	  ;
 
 

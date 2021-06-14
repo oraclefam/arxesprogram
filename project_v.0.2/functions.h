@@ -169,6 +169,44 @@ return number;
 
 
 
+int getPosition(int value){
+
+int i;
+int identifier1;
+for(i=0;i<noOfIdentifiers;i++){
+   if(value==identifiers[i].value){
+      identifier1= i;
+      return identifier1;
+      }
+   }
+}
+
+
+
+
+
+
+int WhileFun(char* condition, int value1, int value2){
+
+if(condition == "<"){
+  while(identifiers[value1].value < value2){
+	return 1;       
+	}
+return 0;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
