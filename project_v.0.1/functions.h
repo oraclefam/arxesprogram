@@ -152,6 +152,25 @@ int number;
 	}
 }
 
+int getValue(char* identifier_name){
+int i;
+int number;
+for(i=0;i<noOfIdentifiers;i++){
+  if(strcmp(identifier_name,identifiers[i].name) == 0)
+	{
+	   number=identifiers[i].value;
+	}		
+			      }
+return number;
+}
+
+
+
+
+
+
+
+
 
 
 
