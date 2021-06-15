@@ -1,0 +1,4 @@
+yacc -d project.y
+lex project.l
+cc lex.yy.c y.tab.c -o output
+./output < sample
