@@ -1,0 +1,61 @@
+PROGRAM hey
+
+STRUCT Book
+CHAR title;
+INTEGER price;
+ENDSTRUCT
+
+
+
+FUNCTION int add(int a[10], char b[2], int c)
+
+VARS
+CHAR f,vt,g;
+INTEGER var1,var2,var3;
+
+var1= (10 + 2)*5 ;
+BREAK;
+var2 =  8/(2*2) + var1 ;
+
+
+f="good";
+g="bad";
+
+/* bblbblblb */
+PRINT ( "HEY YOU");
+PRINT ("LOOK" ,[var2]);
+
+RETURN var2;
+ENDFUNCTION
+
+
+
+STARTMAIN
+CHAR hey1, hey2,hey3;
+INTEGER x,w,t;
+
+
+
+
+
+VARS STRUCT Book book1; 
+book1,title = "Healthy Society";
+book1,price = 20;
+
+VARS STRUCT Book book2; 
+book2,title = "Johny took his gun";
+book2,price = 13;
+
+
+
+
+hey1 = "OH! LOOK AT ME";
+x= 5 * 5;
+t= x+5;
+/* bblbblblb */
+PRINT ("AM IN MAIN!!" ,[t]);
+ENDMAIN
+
+
+
+
