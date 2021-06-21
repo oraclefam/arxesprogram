@@ -65,9 +65,9 @@ void struct_assign_int_value(char*, int );
 
 
 %token ADD SUB MUL DIV POW
-//%token PROGRAM FUNCTION RETURN END_FUNCTION VARS
 
-/*%token CHAR INTEGER */
+
+
 %token ASSIGN
 %left ADD SUB 
 %left MUL DIV
